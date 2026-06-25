@@ -21,6 +21,7 @@ import io.cryostat.CryostatPodNameMapper;
 import io.cryostat.mcp.CryostatMCP;
 import io.cryostat.mcp.model.EventTemplate;
 
+import io.quarkiverse.mcp.server.MetaField;
 import io.quarkiverse.mcp.server.Tool;
 import io.quarkiverse.mcp.server.ToolArg;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -36,6 +37,10 @@ public class K8sOrientedTools {
             description =
                     "List the available JDK Flight Recorder Event Templates for a given"
                             + " application.")
+    @MetaField(
+            prefix = ToolLevelFilter.TOOL_LEVEL_META_PREFIX,
+            name = ToolLevelFilter.TOOL_LEVEL_META_NAME,
+            value = "HIGH")
     public List<EventTemplate> listTargetEventTemplatesByPod(
             @ToolArg(description = "The namespace of application.", required = true)
                     String namespace,
